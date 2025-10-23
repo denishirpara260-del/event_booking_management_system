@@ -1,0 +1,20 @@
+<div class="row g-4">
+    {% for event in events %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-primary fw-semibold">
+                    <a href="{% url 'event_detail' event.pk %}" class="text-decoration-none text-primary">
+                        {{ event.title }}
+                    </a>
+                </h5>
+                <p class="card-text mb-1"><strong>Date:</strong> {{ event.date_time }}</p>
+                <p class="card-text mb-1"><strong>Location:</strong> {{ event.location }}</p>
+                <p class="card-text"><strong>Available Tickets:</strong> 
+                    {{ event.ticket_types.aggregate_total_quantity }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
